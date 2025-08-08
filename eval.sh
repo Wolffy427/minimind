@@ -1,13 +1,30 @@
-export CUDA_VISIBLE_DEVICES=2
-# #    --model_args pretrained=Qwen/Qwen2.5-0.5B-Instruct \
-export HF_ENDPOINT=https://hf-mirror.com
-HF_ENDPOINT=https://hf-mirror.com lm_eval --model minimind \
+nohup lm_eval --model minimind \
    --model_args pretrained=./model/hf/minimind_full_sft \
-   --tasks cmmlu \
-   --output_path ./evaluate/minimind/cmmlu \
-   --wandb_args project=lm-eval,name=minimind-cmmlu \
-   --apply_chat_template False
-   # --tasks ceval-valid,cmmlu,aclue,tmmluplus \
+   --tasks ceval-valid,cmmlu,aclue,tmmluplus \
+   --batch_size 16 \
+   --output_path ./evaluate/minimind/all.json \
+   --apply_chat_template \
+   --trust_remote_code \
+   > logs/eval_sh.log 2>&1 &
+echo $! > ./lm-eval.pid
+
+echo "进程已启动，PID: $(cat ./lm-eval.pid)"
+
+
+
+# nohup lm_eval --model hf \
+#    --model_args pretrained=./model/ms/Qwen/Qwen2.5-7B \
+#    --tasks ceval-valid,cmmlu,aclue,tmmluplus \
+#    --output_path ./evaluate/qwen/all.json \
+#    --batch_size 4 \
+#    --apply_chat_template \
+#    --trust_remote_code \
+#    > logs/eval_sh.log 2>&1 &
+# echo $! > ./lm-eval.pid
+
+# echo "进程已启动，PID: $(cat ./lm-eval.pid)"
+
+#      --wandb_args project=lm-eval,name=qwen-all \
 # export CUDA_VISIBLE_DEVICES=1,2 
 # export HF_ENDPOINT=https://hf-mirror.com 
 # lm_eval --model hf \

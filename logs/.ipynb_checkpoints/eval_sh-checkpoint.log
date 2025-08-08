@@ -1,0 +1,8 @@
+2025-08-05:09:44:20 INFO     [__main__:429] Passed `--trust_remote_code`, setting environment variable `HF_DATASETS_TRUST_REMOTE_CODE=true`
+2025-08-05:09:44:20 INFO     [__main__:446] Selected Tasks: ['aclue', 'ceval-valid', 'cmmlu', 'tmmluplus']
+2025-08-05:09:44:20 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2025-08-05:09:44:20 INFO     [evaluator:240] Initializing minimind model, with arguments: {'pretrained': './model/hf/minimind_full_sft', 'trust_remote_code': True}
+/root/miniconda3/envs/lm_eval/lib/python3.12/site-packages/datasets/load.py:1231: FutureWarning: The repository for tyouisen/aclue contains custom code which must be executed to correctly load the dataset. You can inspect the repository content at https://hf.co/datasets/tyouisen/aclue
+You can avoid this message in future by passing the argument `trust_remote_code=True`.
+Passing `trust_remote_code=True` will be mandatory to load this dataset from the next major release of `datasets`.
+  warnings.warn(
